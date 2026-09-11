@@ -1,0 +1,709 @@
+{
+  "metadata": {
+    "candidate": "Nishank Maidawat",
+    "project": "Hiver AI Support Agent",
+    "brand": "AmazonHelp",
+    "benchmark_dataset": "Golden Evaluation Set (200 curated examples)",
+    "timestamp": "2026-09-11T21:36:56Z",
+    "execution_time_seconds": 5.31
+  },
+  "intent_classification": {
+    "baseline_0_trivial": {
+      "accuracy": 0.195,
+      "macro_f1": 0.0326,
+      "weighted_f1": 0.0636,
+      "macro_precision": 0.0195,
+      "macro_recall": 0.1,
+      "labels": [
+        "ACCOUNT_ACCESS_SECURITY",
+        "DAMAGED_DEFECTIVE_PRODUCT",
+        "DELIVERY_SHIPPING_DELAY",
+        "FEEDBACK_AGENT_COMPLAINT",
+        "ORDER_CANCELLATION_MODIFICATION",
+        "OTHER_GENERAL_INQUIRY",
+        "PROMO_DISCOUNT_PRICING",
+        "REFUND_BILLING_INQUIRY",
+        "RETURN_EXCHANGE_REQUEST",
+        "TECHNICAL_APP_WEBSITE_BUG"
+      ],
+      "per_class": {
+        "ACCOUNT_ACCESS_SECURITY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "support": 18
+        },
+        "DAMAGED_DEFECTIVE_PRODUCT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "support": 26
+        },
+        "DELIVERY_SHIPPING_DELAY": {
+          "precision": 0.195,
+          "recall": 1.0,
+          "f1_score": 0.3264,
+          "support": 39
+        },
+        "FEEDBACK_AGENT_COMPLAINT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "support": 16
+        },
+        "ORDER_CANCELLATION_MODIFICATION": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "support": 16
+        },
+        "OTHER_GENERAL_INQUIRY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "support": 17
+        },
+        "PROMO_DISCOUNT_PRICING": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "support": 16
+        },
+        "REFUND_BILLING_INQUIRY": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "support": 18
+        },
+        "RETURN_EXCHANGE_REQUEST": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "support": 18
+        },
+        "TECHNICAL_APP_WEBSITE_BUG": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1_score": 0.0,
+          "support": 16
+        }
+      },
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          18,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          26,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          39,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          17,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          18,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          18,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "baseline_1_simple_tfidf": {
+      "accuracy": 0.665,
+      "macro_f1": 0.6637,
+      "weighted_f1": 0.6667,
+      "macro_precision": 0.7038,
+      "macro_recall": 0.6737,
+      "labels": [
+        "ACCOUNT_ACCESS_SECURITY",
+        "DAMAGED_DEFECTIVE_PRODUCT",
+        "DELIVERY_SHIPPING_DELAY",
+        "FEEDBACK_AGENT_COMPLAINT",
+        "ORDER_CANCELLATION_MODIFICATION",
+        "OTHER_GENERAL_INQUIRY",
+        "PROMO_DISCOUNT_PRICING",
+        "REFUND_BILLING_INQUIRY",
+        "RETURN_EXCHANGE_REQUEST",
+        "TECHNICAL_APP_WEBSITE_BUG"
+      ],
+      "per_class": {
+        "ACCOUNT_ACCESS_SECURITY": {
+          "precision": 0.5882,
+          "recall": 0.5556,
+          "f1_score": 0.5714,
+          "support": 18
+        },
+        "DAMAGED_DEFECTIVE_PRODUCT": {
+          "precision": 0.9048,
+          "recall": 0.7308,
+          "f1_score": 0.8085,
+          "support": 26
+        },
+        "DELIVERY_SHIPPING_DELAY": {
+          "precision": 0.7586,
+          "recall": 0.5641,
+          "f1_score": 0.6471,
+          "support": 39
+        },
+        "FEEDBACK_AGENT_COMPLAINT": {
+          "precision": 0.9,
+          "recall": 0.5625,
+          "f1_score": 0.6923,
+          "support": 16
+        },
+        "ORDER_CANCELLATION_MODIFICATION": {
+          "precision": 0.6957,
+          "recall": 1.0,
+          "f1_score": 0.8205,
+          "support": 16
+        },
+        "OTHER_GENERAL_INQUIRY": {
+          "precision": 0.5882,
+          "recall": 0.5882,
+          "f1_score": 0.5882,
+          "support": 17
+        },
+        "PROMO_DISCOUNT_PRICING": {
+          "precision": 1.0,
+          "recall": 0.5625,
+          "f1_score": 0.72,
+          "support": 16
+        },
+        "REFUND_BILLING_INQUIRY": {
+          "precision": 0.5789,
+          "recall": 0.6111,
+          "f1_score": 0.5946,
+          "support": 18
+        },
+        "RETURN_EXCHANGE_REQUEST": {
+          "precision": 0.4615,
+          "recall": 1.0,
+          "f1_score": 0.6316,
+          "support": 18
+        },
+        "TECHNICAL_APP_WEBSITE_BUG": {
+          "precision": 0.5625,
+          "recall": 0.5625,
+          "f1_score": 0.5625,
+          "support": 16
+        }
+      },
+      "confusion_matrix": [
+        [
+          10,
+          1,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          19,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7
+        ],
+        [
+          0,
+          1,
+          22,
+          1,
+          0,
+          7,
+          0,
+          1,
+          7,
+          0
+        ],
+        [
+          7,
+          0,
+          0,
+          9,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          10,
+          0,
+          0,
+          7,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          9,
+          7,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          11,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          18,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          7,
+          9
+        ]
+      ]
+    },
+    "main_system_semantic": {
+      "accuracy": 0.805,
+      "macro_f1": 0.7867,
+      "weighted_f1": 0.8002,
+      "macro_precision": 0.831,
+      "macro_recall": 0.7872,
+      "labels": [
+        "ACCOUNT_ACCESS_SECURITY",
+        "DAMAGED_DEFECTIVE_PRODUCT",
+        "DELIVERY_SHIPPING_DELAY",
+        "FEEDBACK_AGENT_COMPLAINT",
+        "ORDER_CANCELLATION_MODIFICATION",
+        "OTHER_GENERAL_INQUIRY",
+        "PROMO_DISCOUNT_PRICING",
+        "REFUND_BILLING_INQUIRY",
+        "RETURN_EXCHANGE_REQUEST",
+        "TECHNICAL_APP_WEBSITE_BUG"
+      ],
+      "per_class": {
+        "ACCOUNT_ACCESS_SECURITY": {
+          "precision": 0.9444,
+          "recall": 0.9444,
+          "f1_score": 0.9444,
+          "support": 18
+        },
+        "DAMAGED_DEFECTIVE_PRODUCT": {
+          "precision": 1.0,
+          "recall": 0.6923,
+          "f1_score": 0.8182,
+          "support": 26
+        },
+        "DELIVERY_SHIPPING_DELAY": {
+          "precision": 0.8478,
+          "recall": 1.0,
+          "f1_score": 0.9176,
+          "support": 39
+        },
+        "FEEDBACK_AGENT_COMPLAINT": {
+          "precision": 1.0,
+          "recall": 0.5625,
+          "f1_score": 0.72,
+          "support": 16
+        },
+        "ORDER_CANCELLATION_MODIFICATION": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1_score": 1.0,
+          "support": 16
+        },
+        "OTHER_GENERAL_INQUIRY": {
+          "precision": 0.125,
+          "recall": 0.1176,
+          "f1_score": 0.1212,
+          "support": 17
+        },
+        "PROMO_DISCOUNT_PRICING": {
+          "precision": 0.8889,
+          "recall": 1.0,
+          "f1_score": 0.9412,
+          "support": 16
+        },
+        "REFUND_BILLING_INQUIRY": {
+          "precision": 1.0,
+          "recall": 0.5556,
+          "f1_score": 0.7143,
+          "support": 18
+        },
+        "RETURN_EXCHANGE_REQUEST": {
+          "precision": 0.5625,
+          "recall": 1.0,
+          "f1_score": 0.72,
+          "support": 18
+        },
+        "TECHNICAL_APP_WEBSITE_BUG": {
+          "precision": 0.9412,
+          "recall": 1.0,
+          "f1_score": 0.9697,
+          "support": 16
+        }
+      },
+      "confusion_matrix": [
+        [
+          17,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          18,
+          0,
+          0,
+          0,
+          7,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          39,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          9,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          1,
+          0,
+          14,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          16,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          7,
+          0,
+          0,
+          0,
+          0,
+          10,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          18,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          16
+        ]
+      ]
+    },
+    "labels": [
+      "ACCOUNT_ACCESS_SECURITY",
+      "DAMAGED_DEFECTIVE_PRODUCT",
+      "DELIVERY_SHIPPING_DELAY",
+      "FEEDBACK_AGENT_COMPLAINT",
+      "ORDER_CANCELLATION_MODIFICATION",
+      "OTHER_GENERAL_INQUIRY",
+      "PROMO_DISCOUNT_PRICING",
+      "REFUND_BILLING_INQUIRY",
+      "RETURN_EXCHANGE_REQUEST",
+      "TECHNICAL_APP_WEBSITE_BUG"
+    ],
+    "total_eval_samples": 200
+  },
+  "escalation_policy": {
+    "baseline_0_trivial": {
+      "accuracy": 0.77,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "true_positives_correct_escalations": 0,
+      "true_negatives_correct_autohandles": 154,
+      "false_positives_unnecessary_escalations": 0,
+      "false_negatives_dangerous_auto_handles": 46,
+      "false_auto_handle_rate": 1.0,
+      "unnecessary_escalate_rate": 0.0,
+      "confusion_matrix": {
+        "tn_auto_handle": 154,
+        "fp_unnecessary_escalation": 0,
+        "fn_false_auto_handle": 46,
+        "tp_correct_escalation": 0
+      }
+    },
+    "baseline_1_simple_threshold": {
+      "accuracy": 0.23,
+      "precision": 0.23,
+      "recall": 1.0,
+      "f1_score": 0.374,
+      "true_positives_correct_escalations": 46,
+      "true_negatives_correct_autohandles": 0,
+      "false_positives_unnecessary_escalations": 154,
+      "false_negatives_dangerous_auto_handles": 0,
+      "false_auto_handle_rate": 0.0,
+      "unnecessary_escalate_rate": 1.0,
+      "confusion_matrix": {
+        "tn_auto_handle": 0,
+        "fp_unnecessary_escalation": 154,
+        "fn_false_auto_handle": 0,
+        "tp_correct_escalation": 46
+      }
+    },
+    "main_system_multi_signal": {
+      "accuracy": 0.23,
+      "precision": 0.23,
+      "recall": 1.0,
+      "f1_score": 0.374,
+      "true_positives_correct_escalations": 46,
+      "true_negatives_correct_autohandles": 0,
+      "false_positives_unnecessary_escalations": 154,
+      "false_negatives_dangerous_auto_handles": 0,
+      "false_auto_handle_rate": 0.0,
+      "unnecessary_escalate_rate": 1.0,
+      "confusion_matrix": {
+        "tn_auto_handle": 0,
+        "fp_unnecessary_escalation": 154,
+        "fn_false_auto_handle": 0,
+        "tp_correct_escalation": 46
+      }
+    },
+    "total_eval_samples": 200
+  },
+  "reply_quality": {
+    "total_evaluated": 200,
+    "mean_semantic_similarity_to_gold": 0.0323,
+    "artifact_sanitization_rate": 1.0,
+    "avg_response_word_count": 34.0
+  },
+  "human_vs_judge_agreement": {
+    "sample_size": 40,
+    "pearson_correlation": -0.0739,
+    "pearson_p_value": 0.650522,
+    "spearman_correlation": -0.1252,
+    "spearman_p_value": 0.441536,
+    "exact_agreement_pct": 62.5,
+    "within_plus_minus_one_pct": 97.5,
+    "mean_absolute_error": 0.395,
+    "annotator": "Nishank Maidawat",
+    "judge_model": "offline-grounded-synthesizer"
+  }
+}

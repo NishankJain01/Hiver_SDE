@@ -1,0 +1,36 @@
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Environment variables & secrets
+.env
+*.env
+secrets.json
+kaggle.json
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Large raw datasets (TWCS full ~700MB)
+data/raw/twcs/
+data/raw/*.zip
+data/raw/*.tar.gz
+*.csv.gz
+
+# Evaluation outputs / temp caches
+.temp/
+_ref_repo/
+scratch/

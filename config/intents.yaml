@@ -1,0 +1,136 @@
+version: "1.0"
+intents:
+  - id: "DELIVERY_SHIPPING_DELAY"
+    name: "Delivery and Shipping Delay"
+    description: "Customer inquiries regarding missing packages, delayed shipments, tracking status updates, and courier delivery issues."
+    positive_examples:
+      - "My package was supposed to arrive yesterday but the tracking hasn't updated."
+      - "Where is my order? It shows delivered but nothing was left at my door."
+      - "The courier marked my delivery as attempted, but I was home all day."
+      - "Can I get an update on shipment status for order #112-8948123-9912345?"
+    boundary_notes: "Focuses strictly on logistics and transit. If customer demands an immediate refund due to the delay, prioritize REFUND_BILLING_INQUIRY or mark as ESCALATE."
+    default_action: "AUTO_HANDLE"
+    requires_human_if:
+      - "Package delayed over 7 days beyond guaranteed delivery window with high customer distress."
+      - "High-value shipment stolen or missing from doorstep with police report."
+
+  - id: "DAMAGED_DEFECTIVE_PRODUCT"
+    name: "Damaged or Defective Product"
+    description: "Customer reports that the physical item received is damaged, broken, malfunctioning, missing parts, or the wrong item entirely."
+    positive_examples:
+      - "The blender arrived with a cracked glass jar and won't turn on."
+      - "I ordered a blue jacket in size L, but you sent me red in size S."
+      - "Box was completely crushed upon arrival and the screen is shattered."
+      - "Missing power cable and user manual from the retail box."
+    boundary_notes: "Applies when the customer describes physical defect or mismatch. If they want to initiate a return or replacement, also related to RETURN_EXCHANGE_REQUEST."
+    default_action: "AUTO_HANDLE"
+    requires_human_if:
+      - "Hazardous product failure, fire/electrical shock incident, or physical injury."
+      - "Repeated replacement arrived damaged."
+
+  - id: "RETURN_EXCHANGE_REQUEST"
+    name: "Return and Exchange Request"
+    description: "Customer requests instructions, labels, status, or troubleshooting for returning an item or requesting an exchange/replacement."
+    positive_examples:
+      - "How do I print a prepaid return label for my recent order?"
+      - "I want to exchange this shirt for a larger size."
+      - "The carrier hasn't shown up for the scheduled return pickup."
+      - "Can I return an item after the 30-day window if it is unopened?"
+    boundary_notes: "Focuses on the return/exchange mechanics. If the customer is asking about money already owed from a completed return, classify under REFUND_BILLING_INQUIRY."
+    default_action: "AUTO_HANDLE"
+    requires_human_if:
+      - "Return window expired requiring exceptional manager override."
+      - "Return pickup failed 3+ times."
+
+  - id: "REFUND_BILLING_INQUIRY"
+    name: "Refund and Billing Inquiry"
+    description: "Questions regarding refund status, unexpected charges, duplicate transactions, unauthorized card debits, or invoice discrepancies."
+    positive_examples:
+      - "I returned my item last week, when will the refund show on my credit card?"
+      - "I see two separate charges of $49.99 for the same order."
+      - "Why was my card billed for Prime when I canceled the trial?"
+      - "My refund amount is less than what I originally paid."
+    boundary_notes: "Covers financial debits, credits, and invoices. If fraudulent/unauthorized account takeover is suspected, flag for immediate human escalation."
+    default_action: "AUTO_HANDLE"
+    requires_human_if:
+      - "Unauthorized/fraudulent transaction disputes."
+      - "Refund missing for >14 business days after warehouse confirmation."
+
+  - id: "ACCOUNT_ACCESS_SECURITY"
+    name: "Account Access and Security"
+    description: "Account lockout, password reset problems, two-factor authentication (OTP) failures, email changes, and suspected account compromise."
+    positive_examples:
+      - "I am locked out of my account and not receiving the OTP on my registered phone."
+      - "Someone changed the email on my account and placed unauthorized orders."
+      - "How do I reset my password if I no longer have access to my old email?"
+      - "Received a security alert about a suspicious login from another country."
+    boundary_notes: "High-security domain. AI must NEVER request or process plaintext passwords, OTPs, or credit card numbers. Sensitive cases must be escalated to authenticated human workflows."
+    default_action: "ESCALATE"
+    requires_human_if:
+      - "Account takeover / suspected unauthorized access."
+      - "Loss of 2FA device or email verification deadlock."
+
+  - id: "ORDER_CANCELLATION_MODIFICATION"
+    name: "Order Cancellation and Modification"
+    description: "Requests to cancel an unshipped order, modify order items, change the shipping address, or adjust delivery instructions."
+    positive_examples:
+      - "I accidentally placed an order 5 minutes ago, please cancel it."
+      - "Can I update my delivery address before the item ships out?"
+      - "I need to change the payment method on an order currently preparing for shipment."
+      - "How do I cancel one specific item from a multi-item order?"
+    boundary_notes: "Applies to pre-shipment order modifications. Once the item has shipped, address/cancellation changes require logistics intervention."
+    default_action: "AUTO_HANDLE"
+    requires_human_if:
+      - "Order already marked as 'shipped' but customer urgently needs address reroute to prevent delivery to wrong party."
+
+  - id: "PROMO_DISCOUNT_PRICING"
+    name: "Promotion, Discount, and Pricing"
+    description: "Inquiries regarding promotional coupon codes, price matching, lightning deals, Prime discount eligibility, and gift card redemption."
+    positive_examples:
+      - "My $20 promo code is saying invalid at checkout even though it expires tomorrow."
+      - "I bought this laptop yesterday and today it is on sale for $100 less. Can I get a price adjustment?"
+      - "My digital gift card claim code is not applying to my balance."
+      - "Why did the Prime student discount not apply to my cart?"
+    boundary_notes: "Focuses on promotions, discounts, and gift cards. Does not cover direct unauthorized credit card billing."
+    default_action: "AUTO_HANDLE"
+    requires_human_if:
+      - "Gift card balance stolen or showing redeemed by another unauthorized account."
+
+  - id: "TECHNICAL_APP_WEBSITE_BUG"
+    name: "Technical, App, and Website Bug"
+    description: "Customer reports technical glitches on the website, mobile app crashes, Prime Video/Kindle digital streaming/syncing errors, or checkout failures."
+    positive_examples:
+      - "The checkout page keeps throwing error code 500 when I click Place Order."
+      - "Prime Video app crashes every time I try to stream in 4K on my smart TV."
+      - "My Kindle eBooks are not syncing across my mobile device and e-reader."
+      - "Search filter on the mobile app is stuck and won't display results."
+    boundary_notes: "Focuses on software, app, digital media, and platform bugs. Physical hardware defect falls under DAMAGED_DEFECTIVE_PRODUCT."
+    default_action: "AUTO_HANDLE"
+    requires_human_if:
+      - "Widespread system outage or payment gateway checkout loop blocking transactions."
+
+  - id: "FEEDBACK_AGENT_COMPLAINT"
+    name: "Customer Feedback and Agent Complaint"
+    description: "Severe customer dissatisfaction regarding poor previous customer service, unfulfilled promises from prior agents, or general service feedback."
+    positive_examples:
+      - "I have spoken with 5 different representatives and each gave contradictory information."
+      - "Your chat agent was extremely rude and abruptly disconnected the session."
+      - "I've been waiting for a manager callback for 3 days as promised. Absolutely unacceptable."
+      - "Terrible experience, no one is taking ownership of this issue."
+    boundary_notes: "High churn and reputation risk. Involves emotional escalation, complaints against previous support reps, or repeated broken promises."
+    default_action: "ESCALATE"
+    requires_human_if:
+      - "Any complaint alleging representative misconduct or repetitive support failures."
+
+  - id: "OTHER_GENERAL_INQUIRY"
+    name: "Other and General Inquiry"
+    description: "Out-of-scope messages, third-party seller questions, brand inquiries, greetings, or unclear/ambiguous messages."
+    positive_examples:
+      - "Hello, are you available to help me?"
+      - "Do you sell international warranties for products purchased in Japan?"
+      - "Is Amazon planning to open a physical store in my city?"
+      - "Can I contact a third-party marketplace seller directly?"
+    boundary_notes: "Catch-all class for ambiguous, conversational, or miscellaneous queries that do not fit defined operational categories."
+    default_action: "AUTO_HANDLE"
+    requires_human_if:
+      - "Message is so ambiguous that safe automated response cannot be constructed without clarification."

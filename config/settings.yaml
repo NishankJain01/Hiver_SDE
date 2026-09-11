@@ -1,0 +1,60 @@
+# System Settings
+project_name: "Hiver AI Support Agent"
+version: "1.0.0"
+brand: "AmazonHelp"
+random_seed: 42
+
+# Paths (relative to workspace root)
+paths:
+  raw_data_sample: "data/raw/sample.csv"
+  processed_pairs: "data/processed/amazon_clean_pairs.csv"
+  golden_eval_set: "data/golden/golden_eval.csv"
+  human_judge_scores: "data/evaluation/human_judge_scores.csv"
+  evaluation_results: "data/evaluation/evaluation_results.json"
+  intents_config: "config/intents.yaml"
+  prompts_config: "config/prompts.yaml"
+
+# Classification Thresholds
+classification:
+  confidence_threshold: 0.65
+  tfidf_max_features: 10000
+  ngram_range: [1, 2]
+  logreg_max_iter: 1000
+
+# Retrieval Configuration
+retrieval:
+  top_k: 3
+  similarity_threshold: 0.55
+  min_evidence_score: 0.40
+
+# Escalation Engine Configuration
+escalation:
+  low_confidence_threshold: 0.65
+  weak_retrieval_threshold: 0.55
+  high_risk_intents:
+    - "ACCOUNT_ACCESS_SECURITY"
+    - "FEEDBACK_AGENT_COMPLAINT"
+  always_escalate_keywords:
+    - "lawyer"
+    - "legal action"
+    - "attorney"
+    - "sue"
+    - "fraud"
+    - "police"
+    - "stolen card"
+    - "unauthorized access"
+    - "scam"
+    - "threat"
+    - "consumer court"
+    - "bbb complaint"
+    - "fbi"
+    - "manager immediately"
+    - "unacceptable behavior"
+
+# LLM Generation & Judge
+llm:
+  default_provider: "mock"  # groq, gemini, openai, mock
+  default_model: "llama-3.3-70b-versatile"
+  judge_model: "llama-3.3-70b-versatile"
+  temperature: 0.1
+  max_tokens: 512
